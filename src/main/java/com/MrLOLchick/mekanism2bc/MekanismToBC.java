@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
         dependencies = "required-after:forge@[14.23.5.2847,);" +
                 "required-after:mekanism;" +
                 "required-after:buildcraftcore;" +
-                "required-after:hbm")
+                "after:hbm")
 public class MekanismToBC {
 
     public static final String MODID = "mekanismtobc";
