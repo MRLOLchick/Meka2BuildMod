@@ -29,7 +29,7 @@ minecraft {
 dependencies {
     implementation files('libs/Mekanism-1.12.2-9.8.3.390.jar')
     implementation files('libs/buildcraft_all_7.99.24.8_1.12.2.jar')
-    implementation files('libs/NTM-Extended-1.12.2-2.0.2.jar')
+    // implementation files('libs/NTM-Extended-1.12.2-2.0.2.jar') // Временно отключено из-за несовместимости
 }
 
 processResources {
