@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "mekanismtobc:blocks/converter"
+    }
+  },
+    "variants": {
+      "normal": { "model": "mekanismtobc:converter" },
+      "inventory": { "model": "mekanismtobc:converter" }
+  }
+}

@@ -1,0 +1,61 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath files('libs/forge-1.12.2-14.23.5.2864-userdev.jar') // <-- Вот эту строку
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+tasks.findByName('extractUserdev')?.enabled = false
+
+version = '1.0'
+group = 'com.MrLOLchick.mekanism2bc'
+archivesBaseName = 'mekanismtobc'
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+minecraft {
+    version = "1.12.2-14.23.5.2859"
+    runDir = 'run'
+    mappings = 'stable_39'
+}
+
+dependencies {
+    implementation files('libs/Mekanism-1.12.2-9.8.3.390.jar')
+    implementation files('libs/buildcraft_all_7.99.24.8_1.12.2.jar')
+    implementation files('libs/NTM-Extended-1.12.2-2.0.2.jar')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title': 'mekanismtobc',
+                'Specification-Vendor': 'MrLOLchick',
+                'Specification-Version': '1',
+                'Implementation-Title': project.name,
+                'Implementation-Version': "${version}",
+                'Implementation-Vendor': 'MrLOLchick',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
